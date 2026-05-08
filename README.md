@@ -1,83 +1,35 @@
-# Strait of Hormuz Shooter
+# Strait Run
 
-A top-down 2D iOS shooter game built with SpriteKit.  Guide your warship through the Strait of Hormuz, destroying enemy vessels wave after wave.
+Strait Run is a fictionalized, arcade-style iOS action game built with SpriteKit (Swift).
 
----
+## Features
+- Start menu, gameplay, and game-over loop.
+- 3-life system + optional second chance purchase for 100 points.
+- Mines, missiles, shoreline instant-death boundaries.
+- Combo multiplier scoring.
+- Power-ups: Shield, Jet Engines, Rail Gun.
+- Best score persistence with `UserDefaults`.
+- Haptic feedback hooks.
+- Launch screen and AppIcon asset placeholders included.
 
-## Requirements
+## Build requirements
+- Xcode 15+
+- iOS 16+
+- Swift 5.9+
 
-| Tool  | Version |
-|-------|---------|
-| Xcode | 15+     |
-| iOS   | 16+     |
-| Swift | 5.9+    |
+## Run in Xcode
+1. Open `StraitOfHormuzShooter.xcodeproj`.
+2. Select `StraitOfHormuzShooter` scheme.
+3. Choose an iPhone simulator/device.
+4. Press **Run**.
 
----
+## Asset organization
+- `Assets.xcassets/AppIcon.appiconset`: replace placeholders with production icon exports.
+- `Assets.xcassets`: add sprites, particles, and audio files (`*.wav`) used by `AudioManager`.
+- `Base.lproj/LaunchScreen.storyboard`: launch branding.
 
-## Project structure
-
-```
-StraitOfHormuzShooter.xcodeproj/   ← Xcode project
-StraitOfHormuzShooter/
-├── AppDelegate.swift              ← App entry point
-├── GameViewController.swift       ← Hosts the SKView
-├── PhysicsCategories.swift        ← Collision bitmasks
-├── Player.swift                   ← Player ship node
-├── Enemy.swift                    ← Enemy ship node (patrol / zigzag / fast)
-├── Bullet.swift                   ← Player missile node
-├── HUD.swift                      ← Score, lives & wave overlay
-├── GameScene.swift                ← Main gameplay scene
-├── GameOverScene.swift            ← Game-over screen with replay button
-├── Assets.xcassets/               ← App icon & accent color
-└── Base.lproj/
-    ├── Main.storyboard            ← Wires GameViewController → SKView
-    └── LaunchScreen.storyboard    ← Launch screen
-StraitOfHormuzShooterTests/
-└── StraitOfHormuzShooterTests.swift  ← Unit tests (HUD, physics categories)
-```
-
----
-
-## How to build & run
-
-1. Open `StraitOfHormuzShooter.xcodeproj` in Xcode.
-2. Select an iPhone simulator or a real device (iOS 16+).
-3. Press **⌘R** (Product → Run).
-
-## How to test
-
-Press **⌘U** (Product → Test) or run from the command line:
-
-```bash
-xcodebuild test \
-  -project StraitOfHormuzShooter.xcodeproj \
-  -scheme StraitOfHormuzShooter \
-  -destination 'platform=iOS Simulator,name=iPhone 15'
-```
-
----
-
-## Gameplay
-
-| Control | Action |
-|---------|--------|
-| Tap & drag | Move your ship left/right |
-| (automatic) | Your ship fires continuously |
-
-- Destroy enemy ships to score points.
-- Each wave gets faster and more frequent.
-- You have **3 lives** — an enemy reaching the bottom costs one life.
-- Three enemy types: **Patrol** (straight), **Zigzag**, and **Fast**.
-
----
-
-## Architecture
-
-The game uses Apple's **SpriteKit** framework and follows a scene-based architecture:
-
-```
-GameViewController  →  GameScene  (gameplay)
-                    →  GameOverScene  (score + restart)
-```
-
-Physics collision detection is handled by `SKPhysicsContactDelegate` with dedicated bitmask categories in `PhysicsCategories.swift`.
+## App Store readiness checklist
+- Add your Team + signing in target settings.
+- Replace icon placeholders and add App Store marketing icon.
+- Add privacy nutrition labels (no tracking/analytics required by default).
+- Validate archive in Organizer, then upload to App Store Connect.
